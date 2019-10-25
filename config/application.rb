@@ -4,6 +4,7 @@
 require_relative 'boot'
 
 require 'rails'
+require "action_cable/engine"
 
 %w( active_record action_controller action_view active_job sprockets ).each { |framework| require "#{framework}/railtie" }
 

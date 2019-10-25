@@ -16,5 +16,7 @@ Peatio::Application.routes.draw do
 
   get '/swagger', to: 'swagger#index'
 
+  mount ActionCable.server => '/cable'
+
   mount API::Mount => API::Mount::PREFIX
 end
