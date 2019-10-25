@@ -73,7 +73,7 @@ module API
           end
           order = create_order(params)
           order_market = Market.find(params[:market])
-          MarketsChannel.broadcast_to order_market, order: order
+          MarketsChannel.broadcast_to order_market, price: order.price, volume: order.volume, type: order.type
           present order, with: API::V2::Entities::Order
         end
 
