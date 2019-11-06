@@ -44,6 +44,11 @@ module API
         error!({ errors: [message] }, 422)
       end
 
+      def new_order_notify(market, order)
+        order_market = ::Market.find(market)
+        MarketsChannel.broadcast_to order_market, price: order.price, volume: order.volume, type: order.type
+      end
+
       def submit_order(order)
         order.locked = order.origin_locked = order.compute_locked
         raise ::Account::AccountError unless check_balance(order)

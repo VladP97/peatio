@@ -72,8 +72,7 @@ module API
             error!({ errors: ['market.order.market_order_price'] }, 422)
           end
           order = create_order(params)
-          #order_market = Market.find(params[:market])
-          #MarketsChannel.broadcast_to order_market, price: order.price, volume: order.volume, type: order.type
+          new_order_notify(params[:market], order)
           present order, with: API::V2::Entities::Order
         end
 
