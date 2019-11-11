@@ -84,4 +84,14 @@ namespace :seed do
       end
     end
   end
+
+  desc 'Adds missing chat_rooms to database defined at config/seed/chat_rooms.yml.'
+  task chat_rooms: :environment do
+    ChatRoom.transaction do
+      YAML.load_file(Rails.root.join('config/seed/chat_rooms.yml')).each do |hash|
+        next if ChatRoom.exists?(lang: hash.fetch('lang'))
+        ChatRoom.create!(hash)
+      end
+    end
+  end
 end
