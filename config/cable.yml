@@ -1,5 +1,6 @@
 redis: &redis
-  adapter: async
+  url: redis://redis:6379
+  adapter: redis
 
 production: *redis
 development: *redis

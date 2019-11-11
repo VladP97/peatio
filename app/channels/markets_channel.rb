@@ -1,5 +1,5 @@
 class MarketsChannel < ApplicationCable::Channel
-  def subscribed
+  def subscribed  
     stream_for market
   end
 
