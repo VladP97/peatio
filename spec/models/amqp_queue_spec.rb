@@ -30,14 +30,14 @@ describe AMQPQueue do
     AMQPQueue.exchange(:testx)
   end
 
-  it 'should publish message on selected exchange' do
+  it 'should publish chat on selected exchange' do
     exchange = mock('test exchange')
     channel.expects(:fanout).with('testx').returns(exchange)
     exchange.expects(:publish).with(JSON.dump(data: 'hello'), {})
     AMQPQueue.publish(:testx, data: 'hello')
   end
 
-  it 'should publish message on default exchange' do
+  it 'should publish chat on default exchange' do
     default_exchange.expects(:publish).with(JSON.dump(data: 'hello'), routing_key: 'testd')
     AMQPQueue.enqueue(:testd, data: 'hello')
   end

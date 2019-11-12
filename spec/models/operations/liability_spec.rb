@@ -23,7 +23,7 @@ describe Operations::Liability do
 
     before { AMQPQueue.expects(:enqueue).with(:events_processor, expected_message) }
 
-    it 'publishes message to rabbitmq' do
+    it 'publishes chat to rabbitmq' do
       # Accept deposit for creation of liability.
       expect(deposit.accept!).to be_truthy
     end

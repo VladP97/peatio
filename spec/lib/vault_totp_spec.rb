@@ -8,7 +8,7 @@ describe Vault::TOTP do
     it 'renders human error when vault is down' do
       expect do
         described_class.with_human_error do
-          raise Vault::VaultError, 'Message connection refused message'
+          raise Vault::VaultError, 'Message connection refused chat'
         end
       end.to raise_error(described_class::Error, '2FA server is under maintenance')
     end
@@ -16,7 +16,7 @@ describe Vault::TOTP do
     it 'renders human error when code was used twice' do
       expect do
         described_class.with_human_error do
-          raise Vault::VaultError, 'Message code already used message'
+          raise Vault::VaultError, 'Message code already used chat'
         end
       end.to raise_error(described_class::Error,
                          'This code was already used. Wait until the next time period')

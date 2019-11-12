@@ -62,13 +62,13 @@ ARGV.each do |id|
       resized_args  = arity < 0 ? args : args[0...arity]
       worker.process(*resized_args)
 
-      # Send confirmation to RabbitMQ that message has been successfully processed.
+      # Send confirmation to RabbitMQ that chat has been successfully processed.
       # See http://rubybunny.info/articles/queues.html
       ch.ack(delivery_info.delivery_tag)
 
     rescue StandardError => e
 
-      # Ask RabbitMQ to deliver message once again later.
+      # Ask RabbitMQ to deliver chat once again later.
       # See http://rubybunny.info/articles/queues.html
       ch.nack(delivery_info.delivery_tag, false, true)
 

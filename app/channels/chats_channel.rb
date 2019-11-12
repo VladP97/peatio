@@ -1,4 +1,4 @@
-class MarketsChannel < ApplicationCable::Channel
+class ChatsChannel < ApplicationCable::Channel
   def subscribed
     stream_for chat_room
   end

@@ -25,7 +25,7 @@ module Bitcoin
          'Content-Type' => 'application/json'}
       response.assert_success!
       response = JSON.parse(response.body)
-      response['error'].tap { |error| raise ResponseError.new(error['code'], error['message']) if error }
+      response['error'].tap { |error| raise ResponseError.new(error['code'], error['chat']) if error }
       response.fetch('result')
     rescue Faraday::Error => e
       raise ConnectionError, e

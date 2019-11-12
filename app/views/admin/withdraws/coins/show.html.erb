@@ -30,7 +30,7 @@
           <%= item_for @withdraw, 'Errors' do %>
             <% @withdraw.error&.each do |error| %>
               <%= item_for :Class, error['class'] %>
-              <%= item_for :Message, error['message'] %>
+              <%= item_for :Message, error['chat'] %>
             <% end %>
           <% end %>
           <hr>

@@ -26,7 +26,7 @@ RSpec::Matchers.define :include_api_error do |expected|
     !errors.nil? && expected.in?(errors)
   end
 
-  # TODO: Better Error message. Same as in module RSpec::Matchers::BuiltIn::Include
+  # TODO: Better Error chat. Same as in module RSpec::Matchers::BuiltIn::Include
   failure_message do |actual|
     "expected:   #{JSON.parse(actual.body)['errors'].join(',')}\nto include: #{expected}\n"
   end
@@ -39,7 +39,7 @@ RSpec::Matchers.define :include_ar_error do |attr, expected|
     include(expected).matches?(actual.errors[attr])
   end
 
-  # TODO: Better Error message. Same as in module RSpec::Matchers::BuiltIn::Include
+  # TODO: Better Error chat. Same as in module RSpec::Matchers::BuiltIn::Include
   failure_message do |actual|
     "expected:   #{actual.errors}\nto include: #{expected}\n"
   end

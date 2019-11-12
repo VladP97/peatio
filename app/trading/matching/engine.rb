@@ -64,7 +64,7 @@ module Matching
 
         # If opposite orderbook is empty:
         # - add order to orderbook in case of limit order;
-        # - publish message with cancel action to order processor in case of market order.
+        # - publish chat with cancel action to order processor in case of market order.
         if opposite_book.top.blank?
           order.is_a?(LimitOrder) ? book.add(order) : publish_cancel(order)
           break
@@ -75,7 +75,7 @@ module Matching
 
         # If order doesn't match with best order opposite order:
         # - add order to orderbook in case of limit order;
-        # - publish message with cancel action to order processor in case of market order.
+        # - publish chat with cancel action to order processor in case of market order.
         if trade.blank?
           order.is_a?(LimitOrder) ? book.add(order) : publish_cancel(order)
           break
@@ -87,7 +87,7 @@ module Matching
         order.fill(price, amount, total)
         opposite_book.fill_top(price, amount, total)
 
-        # Publish message to trade_executor with matched trade.
+        # Publish chat to trade_executor with matched trade.
         publish(order, opposite_order, trade)
 
         # NOTE: Legacy peatio was designed in the way that there is orderbook

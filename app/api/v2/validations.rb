@@ -4,8 +4,8 @@
 module API
   module V2
     module Validations
-      # TODO: Update params validation by overriding message method.
-      # New message structure is "#{PREFIX}.#{REASON}#{ATTRIBUTE}" e.g "account.withdraw.invalid_amount"
+      # TODO: Update params validation by overriding chat method.
+      # New chat structure is "#{PREFIX}.#{REASON}#{ATTRIBUTE}" e.g "account.withdraw.invalid_amount"
 
       class Range < Grape::Validations::Base
         def initialize(*)
@@ -33,7 +33,7 @@ module API
           api = @scope.instance_variable_get(:@api)
           module_name = api.parent.name.humanize.demodulize
           class_name = api.name.humanize.demodulize.singularize
-          # Return default API error message for Management module (no errors unify).
+          # Return default API error chat for Management module (no errors unify).
           return super if module_name == 'management'
 
           options_key?(:message) ? @option[:message] : default_exception(module_name, class_name)
@@ -55,7 +55,7 @@ module API
           api = @scope.instance_variable_get(:@api)
           module_name = api.parent.name.humanize.demodulize
           class_name = options_key?(:c_name) ? @option[:c_name] : api.name.humanize.demodulize.singularize
-          # Return default API error message for Management module (no errors unify).
+          # Return default API error chat for Management module (no errors unify).
           return super if module_name == 'management'
 
           options_key?(:message) ? @option[:message] : default_exception(module_name, class_name)

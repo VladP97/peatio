@@ -60,7 +60,7 @@ module Bench
         end.map(&:join)
       end
 
-      # TODO: Find better solution for getting message number in queue.
+      # TODO: Find better solution for getting chat number in queue.
       # E.g there is rabbitmqctl list_queues.
       def wait_for_matching
         last_log_time = Time.at(0)

@@ -81,7 +81,7 @@ If other error occured during the message handling server throws an error
 ```JSON
 {
   "error": {
-    "message": "Error while handling message."
+    "message": chat
   }
 }
 ```

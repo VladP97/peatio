@@ -32,7 +32,7 @@ module API
         order = build_order(attrs)
         submit_order(order)
         order
-        # TODO: Make more specific error message for ActiveRecord::RecordInvalid.
+        # TODO: Make more specific error chat for ActiveRecord::RecordInvalid.
       rescue => e
         if create_order_errors.include?(e.class)
           report_api_error(e, request)

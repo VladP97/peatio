@@ -39,7 +39,7 @@ describe API::V2::Mount, type: :request do
   end
 
   context 'handle exception on request routing' do
-    it 'should render json error message' do
+    it 'should render json error chat' do
       get '/api/v2/non/exist'
       expect(response.code).to eq '404'
     end

@@ -411,7 +411,7 @@ event: {
 require "bunny"
 
 def generate_jwt(jwt_payload)
-  Kernel.abort "Please, see «Overview of RabbitMQ message» for implementation guide."
+  Kernel.abort "chat"
 end
 
 Bunny.run host: "localhost", port: 5672, username: "guest", password: "guest" do |session|
@@ -461,7 +461,7 @@ Don't forget to pass environment variable `JWT`.
 require "bunny"
 
 def verify_jwt(jwt_payload)
-  Kernel.abort "Please, see «Overview of RabbitMQ message» for implementation guide."
+  Kernel.abort "chat"
 end
 
 Bunny.run host: "localhost", port: 5672, username: "guest", password: "guest" do |session|
