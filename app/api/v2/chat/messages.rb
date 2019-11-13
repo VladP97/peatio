@@ -24,7 +24,7 @@ module API
 
         desc 'Get room messages'
         get '/messages/:room_lang' do
-          messages = ChatRoom.find_by(lang: params[:room_lang]).messages.limit(100)
+          messages = ChatRoom.find_by(lang: params[:room_lang]).messages.last(100)
           messages.map { |message| {'text' => message[:text], 'uid' => message.member[:uid]} }
         end
       end
