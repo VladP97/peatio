@@ -10,6 +10,7 @@ module Matching
     def initialize(payload)
       @payload = payload
       @trade_payload = payload[:trade].symbolize_keys if payload[:trade]
+      @trades_notifications = TradesNotifications.new
     end
 
     def process
@@ -53,7 +54,7 @@ module Matching
 
       create_trade_and_strike_orders
       publish_trade
-      TradesChannel.broadcast_to @market, @trade
+      @trades_notifications.notify(@market, @trade)
       @trade
     end
 
