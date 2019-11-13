@@ -2,11 +2,12 @@ module Matching
   class TradesNotifications
     def notify(market, trade)
       trade_with_min_price, trade_with_max_price = trades_with_min_max_price
-      price_diff(trade)
       TradesChannel.broadcast_to market, \
         trade: trade, \
         min_price: trade_with_min_price.price, \
-        max_price: trade_with_max_price.price
+        max_price: trade_with_max_price.price, \
+        volume: sum_of_daily_trades, \
+        diff: price_diff(trade)
     end
 
     private
