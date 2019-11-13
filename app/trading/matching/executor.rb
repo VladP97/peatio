@@ -53,6 +53,7 @@ module Matching
 
       create_trade_and_strike_orders
       publish_trade
+      TradesChannel.broadcast_to @market, @trade
       @trade
     end
 
