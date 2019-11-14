@@ -80,7 +80,7 @@ module API
           desc 'Get room messages'
           get '/:market/header_info' do
             trade = Trade.last
-            market = Market.find(params[:market])
+            market = ::Market.find(params[:market])
             header_service = HeaderService.new(market)
             trade_with_min_price, trade_with_max_price = header_service.trades_with_min_max_price
             {

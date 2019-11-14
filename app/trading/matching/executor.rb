@@ -54,7 +54,7 @@ module Matching
 
       create_trade_and_strike_orders
       publish_trade
-      @trades_notifications.notify(@market, @trade)
+      @trades_notifications.notify(@trade, @market)
       @trade
     end
 
