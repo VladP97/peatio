@@ -1,7 +1,7 @@
 module Matching
   class TradesNotifications < HeaderService
-    def notify(trade, market)
-      @market = market
+    def notify(trade, market_to_notify)
+      market = market_to_notify
       trade_with_min_price, trade_with_max_price = trades_with_min_max_price
       TradesChannel.broadcast_to market, \
         trade: trade, \

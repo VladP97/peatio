@@ -1,7 +1,7 @@
 class HeaderService
 
-  def initialize(market = nil)
-    @market = market
+  def initialize(initial_market = nil)
+    @market = initial_market
   end
 
   def trades_with_min_max_price
@@ -28,7 +28,7 @@ class HeaderService
     @market
   end
 
-  def market=(market)
-    @market = market
+  def market=(new_market)
+    @market = new_market
   end
 end
