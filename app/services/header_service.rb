@@ -1,6 +1,6 @@
 class HeaderService
 
-  def initialize(initial_market = nil)
+  def initialize(initial_market)
     @market = initial_market
   end
 
