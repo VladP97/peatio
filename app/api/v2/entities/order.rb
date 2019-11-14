@@ -107,6 +107,22 @@ module API
           }
         )
 
+	expose(
+	  :locked,
+	  documentation: {
+	    type: BigDecimal,
+	    desc: ""
+	  }
+	)
+
+	expose(
+          :origin_locked,
+          documentation: {
+            type: BigDecimal,
+            desc: ""
+          }
+        )
+
         expose(
           :executed_volume,
           documentation: {
