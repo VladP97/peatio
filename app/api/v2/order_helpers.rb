@@ -46,8 +46,8 @@ module API
 
       def new_order_notify(market, new_order)
         order_market = ::Market.find(market)
-        order = new_order.ask == 'usd' ? OrderAsk.find(new_order.id) : OrderBid.find(new_order.id)
-        MarketsChannel.broadcast_to order_market, order
+        order, order_type = get_order_ask(order)
+        MarketsChannel.broadcast_to order_market, order: order, order_type: order_type
       end
 
       def submit_order(order)
@@ -77,6 +77,16 @@ module API
 
       def order_param
         params[:order_by].downcase == 'asc' ? 'id asc' : 'id desc'
+      end
+
+      private
+
+      def get_order_ask(order)
+        if order.ask == 'usd'
+          [OrderAsk.find(order.id), 'OrderAsk']
+        else
+          [OrderBid.find(order.id), 'OrderBid']
+        end
       end
     end
   end
