@@ -46,7 +46,7 @@ module API
 
       def new_order_notify(market, new_order)
         order_market = ::Market.find(market)
-        order = new_order.ask == 'usd' ? OrderBid.find(order.id) : OrderAsk.find(order.id)
+        order = new_order.ask == 'usd' ? OrderAsk.find(new_order.id) : OrderBid.find(new_order.id)
         MarketsChannel.broadcast_to order_market, order
       end
 
