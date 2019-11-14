@@ -44,8 +44,9 @@ module API
         error!({ errors: [message] }, 422)
       end
 
-      def new_order_notify(market, order)
+      def new_order_notify(market, new_order)
         order_market = ::Market.find(market)
+        order = new_order.ask == 'usd' ? OrderBid.find(order.id) : OrderAsk.find(order.id)
         MarketsChannel.broadcast_to order_market, order
       end
 
