@@ -77,6 +77,20 @@ module API
                  .tap { |q| present paginate(q), with: API::V2::Entities::Trade }
           end
 
+          desc 'Get room messages'
+          get '/:market/header_info' do
+            trade = Trade.last
+            market = Market.find(params[:market])
+            header_service = HeaderService.new(market)
+            trade_with_min_price, trade_with_max_price = header_service.trades_with_min_max_price
+            {
+                min_price: trade_with_min_price.price, \
+                max_price: trade_with_max_price.price, \
+                volume: header_service.sum_of_daily_trades, \
+                diff: header_service.price_diff(trade)
+            }
+          end
+
           desc 'Get depth or specified market. Both asks and bids are sorted from highest price to lowest.'
           params do
             requires :market,
