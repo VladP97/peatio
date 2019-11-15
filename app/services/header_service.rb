@@ -5,7 +5,12 @@ class HeaderService
   end
 
   def trades_with_min_max_price
-    last_24_hours_trades_for_market.minmax_by { |trade| trade.price } rescue [0.0, 0.0]
+    min, max = last_24_hours_trades_for_market.minmax_by { |trade| trade.price }
+    if min && max
+      [min.price, max.price]
+    else
+      [0.0, 0.0]
+    end
   end
 
   def price_diff(trade)
@@ -13,7 +18,7 @@ class HeaderService
   end
 
   def sum_of_daily_trades
-    last_24_hours_trades_for_market.sum { |trade| trade.total } rescue 0.0
+    last_24_hours_trades_for_market.sum { |trade| trade.total }.to_f
   end
 
   def last_24_hours_trades_for_market
