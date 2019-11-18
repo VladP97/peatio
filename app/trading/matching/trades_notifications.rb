@@ -8,7 +8,7 @@ module Matching
       TradesChannel.broadcast_to market, \
         trade: trade, \
         header: get_header_info(trade_with_min_price, trade_with_max_price, volume, diff), \
-        trade_orders: OrderBook.new(OrderBid.find(trade.maker_order_id), OrderAsk.find(trade.taker_order_id))
+        trade_orders: get_trade_orders(OrderBid.find(trade.maker_order_id), OrderAsk.find(trade.taker_order_id))
     end
 
     private
@@ -20,6 +20,10 @@ module Matching
         volume: volume,
         diff: diff
       }
+    end
+
+    def get_trade_orders(order_bid, order_ask)
+      { order_bid: order_bid, order_ask: order_ask }
     end
   end
 end
