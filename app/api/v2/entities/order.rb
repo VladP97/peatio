@@ -107,15 +107,15 @@ module API
           }
         )
 
-	expose(
-	  :locked,
-	  documentation: {
-	    type: BigDecimal,
-	    desc: ""
-	  }
-	)
+        expose(
+          :locked,
+          documentation: {
+            type: BigDecimal,
+            desc: ""
+          }
+        )
 
-	expose(
+	      expose(
           :origin_locked,
           documentation: {
             type: BigDecimal,
