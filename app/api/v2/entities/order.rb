@@ -152,6 +152,16 @@ module API
             API::V2::Entities::Trade.represent order.trades, side: side
           end
 
+        expose(
+          :percents_volume,
+          documentation: {
+            type: Integer,
+            desc: "Volume in percents."
+          }
+        ) do |order, _options|
+          order.volume / order.origin_volume * 100
+        end
+
         private
 
         def side
