@@ -11,8 +11,10 @@ module Matching
       trade_with_min_price, trade_with_max_price = header_service.trades_with_min_max_price
       volume = header_service.sum_of_daily_trades
       diff = header_service.price_diff(trade)
+      trade_hash = trade.attributes
+      trade_hash["created_at"] = trade.created_at.to_s(:time)
       TradesChannel.broadcast_to market, \
-        trade: trade, \
+        trade: trade_hash, \
         header: get_header_info(trade_with_min_price, trade_with_max_price, volume, diff), \
         trade_orders: get_trade_orders([Order.find(trade.taker_order_id), Order.find(trade.maker_order_id)])
     end
