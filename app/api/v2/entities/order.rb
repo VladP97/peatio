@@ -100,7 +100,6 @@ module API
 
         expose(
           :volume,
-          as: :remaining_volume,
           documentation: {
             type: BigDecimal,
             desc: "The remaining volume, see 'volume'."
