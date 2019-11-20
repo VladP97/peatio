@@ -44,10 +44,10 @@ module API
         error!({ errors: [message] }, 422)
       end
 
-      def new_order_notify(market, new_order)
+      def order_notify(market, new_order, is_cancel)
         order_market = ::Market.find(market)
         order, order_type = get_order_ask(new_order)
-        MarketsChannel.broadcast_to order_market, order: order, order_type: order_type
+        MarketsChannel.broadcast_to order_market, order: order, order_type: order_type, is_cancel: is_cancel
       end
 
       def submit_order(order)

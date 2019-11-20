@@ -72,7 +72,7 @@ module API
             error!({ errors: ['market.order.market_order_price'] }, 422)
           end
           order = create_order(params)
-	        new_order_notify(params[:market], order)
+	        order_notify(params[:market], order, false)
           present order, with: API::V2::Entities::Order
         end
 
@@ -84,6 +84,7 @@ module API
           begin
             order = current_user.orders.find(params[:id])
             cancel_order(order)
+            order_notify(order.market_id, order, true)
             present order, with: API::V2::Entities::Order
           rescue ActiveRecord::RecordNotFound => e
             # RecordNotFound in rescued by ExceptionsHandler.
