@@ -67,7 +67,6 @@ module API
           }
         )
 
-
         expose(
           :created_at,
           format_with: :iso8601,
@@ -75,7 +74,9 @@ module API
             type: String,
             desc: "Order create time in iso8601 format."
           }
-        )
+        ) do |order, _options|
+          order.created_at.strftime("%T %m-%d-%Y")
+        end
 
         expose(
           :updated_at,

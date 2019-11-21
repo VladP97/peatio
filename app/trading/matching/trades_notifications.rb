@@ -12,7 +12,8 @@ module Matching
       volume = header_service.sum_of_daily_trades
       diff = header_service.price_diff(trade)
       trade_hash = trade.attributes
-      trade_hash["created_at"] = trade.created_at.to_s(:time)
+      trade_hash["created_at"] = trade.created_at.strftime("%T %m-%d-%Y")
+      trade_hash["time_of_creation"] = trade.created_at.strftime("%T")
       TradesChannel.broadcast_to market, \
         trade: trade_hash, \
         header: get_header_info(trade_with_min_price, trade_with_max_price, volume, diff), \
