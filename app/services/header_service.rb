@@ -14,7 +14,10 @@ class HeaderService
   end
 
   def price_diff(trade)
-    (last_24_hours_trades_for_market.first.price - trade.price) / last_24_hours_trades_for_market.first.price rescue 0.0
+    price_diff = last_24_hours_trades_for_market.first.price - trade.price
+    (price_diff / last_24_hours_trades_for_market.first.price).round(2)
+  rescue
+    0.0
   end
 
   def sum_of_daily_trades
