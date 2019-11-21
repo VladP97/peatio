@@ -39,6 +39,7 @@ module API
       mount Account::Mount  => :account
       mount Market::Mount   => :market
       mount Chat::Messages  => :chat
+      mount User::Mount   => :user
 
       # The documentation is accessible at http://localhost:3000/swagger?url=/api/v2/swagger
       # Add swagger documentation for Peatio User API
