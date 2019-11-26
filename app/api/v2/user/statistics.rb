@@ -17,14 +17,10 @@ module API
           usd_exchange_rates = exchange_rates
 
           usd_sum = accounts.sum do |account|
-            if usd_exchange_rates[account.currency_id]
-              usd_exchange_rates[account.currency_id] * account.balance
-            else
-              0
-            end
+            usd_exchange_rates.fetch(account.currency_id, 0) * account.balance
           end
 
-          {usd_sum: usd_sum, btc_sum: usd_sum / usd_exchange_rates['btc']}
+          {usd_sum: usd_sum, btc_sum: (usd_sum / usd_exchange_rates['btc'] rescue 0)}
         end
       end
     end

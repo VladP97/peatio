@@ -21,7 +21,7 @@ class HeaderService
   end
 
   def sum_of_daily_trades
-    last_24_hours_trades_for_market.sum { |trade| trade.total }.to_f
+    last_24_hours_trades_for_market.sum(:total).to_f
   end
 
   def last_24_hours_trades_for_market
