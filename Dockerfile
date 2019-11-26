@@ -52,6 +52,7 @@ RUN echo "# This file was overridden by default during docker image build." > Ge
   && bundle exec rake tmp:create \
   && bundle exec rake assets:precompile
 
+RUN touch /home/app/tmp/caching-dev.txt
 # Expose port 3000 to the Docker host, so we can access it from the outside.
 EXPOSE 3000
 
