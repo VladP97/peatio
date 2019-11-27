@@ -6,6 +6,16 @@ module API
     module Entities
       class Account < Base
         expose(
+          :asset,
+          documentation: {
+            desc: 'Currency name.',
+            type: String
+          }
+        ) do |account, _options|
+          ::Currency.find(account.currency_id).name
+        end
+
+        expose(
           :currency_id,
           as: :currency,
           documentation: {
@@ -31,6 +41,17 @@ module API
             type: BigDecimal
           }
         )
+
+        expose(
+          :total,
+          format_with: :decimal,
+          documentation: {
+            desc: 'Account total funds.',
+            type: BigDecimal
+          }
+        ) do |account, _options|
+          account.amount
+        end
       end
     end
   end
